@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <title>PAC DESARROLLO UF3 MP6</title>
+    <meta charset="utf-8"/>
+  </head>
+  <body onload="changecolors()"> 
+    <!-------------------- EJERCICIO 1 -------------------->
+    <div id="EventoRaton">
+     <h1>EVENTO RATÓN</h1>
+      <input type="button" value="Pinchame y verás" onclick="alert('Gracias por pinchar');" />
+    </div>
+    <div id="EventoTeclado">
+     <h1>EVENTO TECLADO</h1>
+      <input type="text" value="Prueba a escribir" onkeypress="alert('Jajaja no has podido')">
+    </div>
+    <script type="text/javascript">
+         
+        var x;
+        function changecolors() {
+          x  = 1;
+          setInterval(change, 1000);
+        }
+
+        function change() {
+          if (x === 1) {
+            color = "red";
+            x = 2;
+          } else {
+            color = "green";
+            x = 1;
+          }
+          document.body.style.background = color;
+        }
+    </script>
+    <div id="EventoHTML" >
+     <h1>EVENTO HTML</h1>
+     <span>Cuando entras en la página el fondo es blanco.</span>
+     <span>Cuando la página ya está cargada totalmente (onload), el fondo va alternando cada 1000ms entre rojo y verde.</span>
+    </div>
+    -->
+    <!--------------------- EJERCICIO 2 --------------------------------->
+    <h1>FORMULARIO</h1>
+    <script type="text/javascript">
+    function comprobarCheck(){
+      var isChecked = document.getElementById("alta_baja").checked;
+      if(isChecked){
+        document.getElementById("formulario").action="alta.html";
+      } else{
+        document.getElementById("formulario").action="baja.html";
+      }
+    }
+    </script>
+    <form method="POST" id="formulario">
+      <input type="text" placeholder="Nombre" name="nombre"><br>
+      <input type="password" placeholder="Contraseña" name="password"><br>
+      <input type="email" placeholder="nombre@ejemplo.net" name="correo"><br>
+      <input type="number" placeholder="Edad" name="edad"><br>
+      <input type="checkbox" id="alta_baja"><label>Alta/Baja</label><br>
+      <button type="submit" onclick="comprobarCheck()">Enviar</button>
+      <button type="reset">Reset</button>
+      <h5>*Nota: Si está el check seleccionado será "Alta" y sino "Baja"</h5>
+    </form>
+    <!--------------------- EJERCICIO 3 --------------------------------->
+    <div>
+      <script>
+        document.write("La resolución de tu pantalla es: " + screen.width + " x " + screen.height)
+      </script><br><script>
+        document.write("El tamaño de tu ventana es: " + window.outerWidth+ " x " + window.outerHeight)
+      </script>
+    </div>
+  <!--------------------- EJERCICIO 4 ------------------------------->
+  <div>
+    <li>LINEA 1</li>
+    <li>LINEA 2</li>
+    <li>LINEA 3</li>
+    <li>LINEA 4</li>
+    <li>LINEA 5</li>
+  </div>
+  </body>
+</html>

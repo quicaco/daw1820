@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <title>PAC DESARROLLO UF3 MP6</title>
+    <meta charset="utf-8"/>
+    
+    <script>
+      function dirigir(cadena) {
+        window.open(cadena, "_parent");
+      }
+      
+      
+      var db = openDatabase('colegio', '1.0', 'Test DB', 3 * 1024 * 1024);
+      var cadena;
+      var vara = document.getElementById("asig");
+      var varc = document.getElementById("curso");
+      var varf = document.getElementById("fecha");
+      db.transaction(function (ssql) {
+        ssql.executeSql('CREATE TABLE IF NOT EXISTS centro (id unique, asignatura, curso, fecha)');
+        ssql.executeSql('INSERT INTO centro (id, asignatura, curso, fecha) VALUES (1,"Desarrollo web entorno cliente","semetre1","2017-01-10")');
+        ssql.executeSql('INSERT INTO centro (id, asignatura, curso, fecha) VALUES (2,"Desarrollo web entorno servidor","semestre1","2017-01-10")');
+        //ssql.executeSql('INSERT INTO centro (id, asignatura, curso, fecha) VALUES (3,"vara","varc","document.getElementById('fecha')")');
+      });  
+      mostrarDDBB(db);
+      
+      function mostrarDDBB(db) {
+        var cadena = '<table>';
+        db.transaction(function (ssql) {
+          ssql.executeSql('SELECT * FROM centro', [], function (ssql, results) {
+            var len = results.rows.length, i;
+            for (i = 0; i < len; i++) {
+              cadena += '<tr><td>' + results.rows.item(i).id + '</td><td>' +
+              results.rows.item(i).asignatura + '</td><td>' + results.rows.item(i).curso +
+              '</td><td>' + results.rows.item(i).fecha + '</td></tr>';
+            }
+            cadena += '</table>';
+            document.getElementById("mostrar").innerHTML = cadena;
+          }, null);
+        });
+      }
+      
+      function borrar() { }
+      function agregar(db) {
+      }
+      function agregarItem(db, posicion) { }
+    </script>
+  </head>
+  <body>
+  <div>
+    <h3>EJERCICIO 5</h3>
+    <form>
+      Asignatura: <input type="text" id="asig"placeholder="Nombre asignatura"><br>
+      Curso: <input type="number" id="curso" placeholder="Numero curso"><br>
+      Fecha: <input type="date" id="fecha" placeholder="aaaa-mm-dd"><br>
+      <button type="submit" onclick="">Enviar</button>
+      <button type="reset">Limpiar</button>
+    </form>
+  </div>
+    <div id="mostrar"></div>
+  </body>
+</html>
